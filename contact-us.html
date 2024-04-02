@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contact us</title>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "8HmEYmXDf7xgLF67H",
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <h2>contact us</h2>
+
+    <form id="form">
+      <div class="field">
+        <label for="subject">subject</label>
+        <input type="text" name="subject" id="subject" />
+      </div>
+      <div class="field">
+        <label for="from_name">from_name</label>
+        <input type="text" name="from_name" id="from_name" />
+      </div>
+      <div class="field">
+        <label for="email_id">Enter you Email_Id</label>
+        <input type="text" name="email_id" id="email_id" />
+      </div>
+      <div class="field">
+        <label for="message">message</label>
+        <input type="text" name="message" id="message" />
+      </div>
+
+      <input type="submit" id="button" value="Send Email" />
+    </form>
+
+    <script>
+      const btn = document.getElementById("button");
+
+      document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          btn.value = "Sending...";
+
+          const serviceID = "default_service";
+          const templateID = "template_84d8t0o";
+
+          emailjs.sendForm(serviceID, templateID, this).then(
+            () => {
+              btn.value = "Send Email";
+              alert("Sent!");
+            },
+            (err) => {
+              btn.value = "Send Email";
+              alert(JSON.stringify(err));
+            }
+          );
+        });
+    </script>
+  </body>
+</html>
